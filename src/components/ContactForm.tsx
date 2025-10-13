@@ -20,9 +20,10 @@ const ContactForm = () => {
   });
 
   const interests = [
-    "Otimizar Domínio",
-    "Automação NFs",
-    "Treinamento",
+    "Consultoria de Processos",
+    "Tech Leader as a Service",
+    "Automação de NFs",
+    "Otimização Thomson Reuters",
     "Outros",
   ];
 
@@ -86,11 +87,10 @@ const ContactForm = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-background mb-6">
-              Chega de pagar por tecnologia que não te entrega tudo.
+              Sua empresa merece usar 100% da sua tecnologia.
             </h2>
             <p className="text-xl text-background/90">
-              Não espere. Converse com quem entende de processos e otimização. Sua próxima decisão
-              inteligente começa aqui.
+              Não deixe o potencial inexplorado. Fale com quem entende de otimização de processos e sistemas.
             </p>
           </div>
 
@@ -180,7 +180,7 @@ const ContactForm = () => {
 
                 <div className="space-y-3">
                   <Label className="text-background">Interesse em:</Label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {interests.map((interest) => (
                       <div key={interest} className="flex items-center space-x-2">
                         <Checkbox

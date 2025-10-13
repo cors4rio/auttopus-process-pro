@@ -48,7 +48,7 @@ const Footer = () => {
                   onClick={() => scrollToSection("solucoes")}
                   className="text-background/80 hover:text-background transition-colors"
                 >
-                  Soluções
+                  Serviços
                 </button>
               </li>
               <li>
@@ -56,7 +56,15 @@ const Footer = () => {
                   onClick={() => scrollToSection("abordagem")}
                   className="text-background/80 hover:text-background transition-colors"
                 >
-                  Como Funciona
+                  Como Trabalhamos
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("resultados")}
+                  className="text-background/80 hover:text-background transition-colors"
+                >
+                  Resultados
                 </button>
               </li>
               <li>

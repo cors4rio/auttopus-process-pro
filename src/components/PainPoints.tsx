@@ -12,21 +12,15 @@ const PainPoints = () => {
     },
     {
       icon: Settings,
-      title: "TI Avulso, Processos Congelados?",
+      title: "TI Geral, Foco Burocrático?",
       description:
-        "Sua equipe de TI cuida do hardware, mas quem otimiza seus fluxos de trabalho e softwares?",
+        "Sua equipe de TI cuida do hardware, mas quem otimiza seus fluxos de trabalho e softwares para extrair 100%?",
     },
     {
       icon: Clock,
-      title: "Horas Perdidas em Tarefas Repetitivas?",
+      title: "Horas Perdidas em Rotinas Manuais?",
       description:
-        "Importação de NFs, relatórios, emissão de alvarás – rotinas que consomem tempo e geram fadiga na equipe.",
-    },
-    {
-      icon: Users,
-      title: "Falta de Especialista em Automação?",
-      description:
-        "Seus colaboradores precisam de um reforço focado em maximizar o que você já tem.",
+        "Importação de NFs, relatórios, alvarás – tarefas repetitivas que roubam tempo e engajamento da equipe.",
     },
   ];
 
@@ -48,7 +42,7 @@ const PainPoints = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Você se identifica com algum desses desafios?
+            Sua tecnologia está à altura dos seus desafios?
           </h2>
         </div>
 
@@ -82,7 +76,7 @@ const PainPoints = () => {
             variant="outline"
             className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all font-semibold"
           >
-            Sim, essa é a minha realidade. O que fazer?
+            Sim, essa é a minha realidade. Como a AUTTOPUS resolve?
           </Button>
         </div>
       </div>

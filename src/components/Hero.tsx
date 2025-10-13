@@ -25,15 +25,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Seus Sistemas Contábeis Entregam{" "}
-            <span className="text-primary">100%</span> do que Podem?
+            Transforme seus Sistemas em{" "}
+            <span className="text-primary">Máquinas de Produtividade</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-            A AUTTOPUS Garante que Sim.
-          </p>
           <p className="text-lg md:text-xl text-foreground/80 mb-12 max-w-3xl mx-auto">
-            Preenchemos a lacuna de especialistas, otimizando seus softwares existentes e processos
-            para resultados reais. Sua produtividade está a um passo da revolução.
+            A AUTTOPUS preenche a lacuna de especialistas, otimizando seus softwares existentes e processos com flexibilidade para resultados reais. Sua equipe merece foco estratégico.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,31 +1,25 @@
-import { FileText, Calculator, FileCheck, DollarSign } from "lucide-react";
+import { FileText, Calculator, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Services = () => {
   const services = [
     {
-      icon: FileText,
-      title: "Automação de NFs e Importação",
-      description:
-        "Buscamos e importamos automaticamente suas NFs para o seu sistema contábil, eliminando o trabalho manual e a parametrização complexa.",
-    },
-    {
       icon: Calculator,
-      title: "Rotinas Tributárias e Fiscais Otimizadas",
+      title: "Consultoria de Processos para Eficiência Máxima",
       description:
-        "Baixa automática de relatórios de prefeituras, download de planilhas e integração com Domínio Web ou outros sistemas.",
+        "Analisamos, desenhamos e implementamos fluxos de trabalho otimizados para seu setor contábil/financeiro, garantindo que seus sistemas atuais entreguem 100% do que podem.",
     },
     {
-      icon: FileCheck,
-      title: "Alvarás e Processos Societários Automatizados",
+      icon: Users,
+      title: "Tech Leader as a Service: Expertise Estratégica para Sua Equipe",
       description:
-        "Emissão e envio automatizado de alvarás e gestão simplificada de processos societários sem complicação.",
+        "Alocamos um especialista em automação e otimização para guiar seu time, preenchendo a lacuna de conhecimento e desenvolvendo soluções internas.",
     },
     {
-      icon: DollarSign,
-      title: "Gestão Financeira Integrada",
+      icon: FileText,
+      title: "Automação de Rotinas Específicas",
       description:
-        "Centralize contas a pagar/receber, emissão de boletos e NFs, relatórios financeiros em um só lugar com Domínio Honorários.",
+        "Da importação inteligente de NFs à emissão automatizada de alvarás e integração de módulos (Domínio Honorários, Onvio, etc.), transformamos tarefas repetitivas em processos eficientes.",
     },
   ];
 
@@ -34,11 +28,14 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Onde Podemos Atuar para Sua Eficiência Máxima?
+            Nossas Soluções Sob Medida Para Sua Otimização
           </h2>
+          <p className="text-xl text-muted-foreground">
+            Oferecemos a expertise que sua empresa precisa, de forma flexível e focada em resultados.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <Card
               key={index}

@@ -44,16 +44,22 @@ const Header = () => {
 
           <nav className="hidden md:flex items-center gap-8">
             <button
+              onClick={() => scrollToSection("hero")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Início
+            </button>
+            <button
               onClick={() => scrollToSection("solucoes")}
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
-              Nossas Soluções
+              Nossos Serviços
             </button>
             <button
               onClick={() => scrollToSection("abordagem")}
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
-              Como Funciona
+              Como Trabalhamos
             </button>
             <button
               onClick={() => scrollToSection("resultados")}

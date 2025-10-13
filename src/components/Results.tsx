@@ -5,32 +5,32 @@ const Results = () => {
   const results = [
     {
       icon: TrendingUp,
-      title: "Aumento de Produtividade em 80%+",
+      title: "Aumento de Produtividade (+80%)",
       description:
-        "Mais tempo para decisões estratégicas, menos para tarefas manuais e repetitivas.",
+        "Mais tempo para decisões estratégicas, menos para tarefas manuais.",
     },
     {
       icon: CheckCircle2,
-      title: "Eliminação de Erros e Retrabalho",
-      description: "Processos automatizados significam precisão e confiabilidade nos seus dados e entregas.",
+      title: "Redução Drástica de Erros",
+      description: "Processos automatizados significam precisão e compliance.",
     },
     {
       icon: DollarSign,
-      title: "Economia de Custo e Tempo",
+      title: "Otimização de Custos Operacionais",
       description:
-        "Maximize seus investimentos existentes e reduza despesas operacionais significativamente.",
+        "Aproveite melhor seus investimentos em software e recursos humanos.",
     },
     {
       icon: Users,
-      title: "Equipe Capacitada e Motivada",
+      title: "Equipe Engajada e Estratégica",
       description:
-        "Seus colaboradores mais satisfeitos, focados no que realmente agrega valor ao negócio.",
+        "Menos frustração com o operacional, mais foco no crescimento.",
     },
     {
       icon: BarChart3,
-      title: "Gestão Sem Complexidade",
+      title: "Tomada de Decisão Ágil",
       description:
-        "Centralize e simplifique suas rotinas financeiras e fiscais com nossas soluções integradas.",
+        "Dados precisos e processos fluidos para uma gestão mais assertiva.",
     },
   ];
 
@@ -39,11 +39,8 @@ const Results = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Resultados que Transformam: Menos Stress, Mais Valor
+            Sua Empresa Otimizada Significa:
           </h2>
-          <p className="text-xl text-muted-foreground">
-            Com a AUTTOPUS, você não compra um serviço, você investe em:
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
