@@ -11,6 +11,7 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const featuredPosts = blogPosts.filter((post) => post.featured);
+  const popularPosts = blogPosts.slice(0, 5); // Get first 5 posts as most popular
 
   const filteredPosts = useMemo(() => {
     return blogPosts.filter((post) => {
@@ -28,7 +29,7 @@ const Blog = () => {
       <main className="container mx-auto px-4 pt-28 pb-16">
         {/* Featured Posts Carousel */}
         {featuredPosts.length > 0 && (
-          <div className="mb-16">
+          <div className="mb-8">
             <FeaturedCarousel posts={featuredPosts} />
           </div>
         )}
@@ -44,15 +45,13 @@ const Blog = () => {
                 onTagSelect={setSelectedTag}
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
+                popularPosts={popularPosts}
               />
             </div>
           </aside>
 
           {/* Blog Posts Grid */}
           <div className="lg:col-span-3">
-            <h2 className="text-2xl font-bold mb-6">
-              {selectedTag ? `Posts sobre ${selectedTag}` : "Todos os Posts"}
-            </h2>
             {filteredPosts.length > 0 ? (
               <div className="grid md:grid-cols-2 gap-6">
                 {filteredPosts.map((post) => (

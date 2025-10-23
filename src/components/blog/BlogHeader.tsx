@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
 import blogLogo from "@/assets/auttopusblog-logo.svg";
 
 const BlogHeader = () => {
@@ -35,12 +42,23 @@ const BlogHeader = () => {
             >
               Home
             </a>
-            <a
-              href="/#servicos"
-              className="text-primary-foreground hover:text-primary-foreground/80 transition-colors font-medium"
-            >
-              Serviços
-            </a>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="text-primary-foreground hover:text-primary-foreground/80 transition-colors font-medium flex items-center gap-1">
+                Serviços
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  Consultoria de Processos para Eficiência Máxima
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Tech Leader as a Service
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Automação de Rotinas Específicas
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <a
               href="/blog"
               className="text-primary-foreground font-bold underline underline-offset-4"
