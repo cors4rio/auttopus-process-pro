@@ -25,17 +25,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen">
       <BlogHeader />
-      <main className="container mx-auto px-4 pt-32 pb-16">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Blog AUTTOPUS
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Insights, tendências e boas práticas em automação, otimização de processos e transformação digital para contabilidade e finanças.
-          </p>
-        </div>
-
+      <main className="container mx-auto px-4 pt-28 pb-16">
         {/* Featured Posts Carousel */}
         {featuredPosts.length > 0 && (
           <div className="mb-16">
