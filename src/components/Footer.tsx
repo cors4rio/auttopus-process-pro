@@ -68,6 +68,14 @@ const Footer = () => {
                 </button>
               </li>
               <li>
+                <a
+                  href="/blog"
+                  className="text-background/80 hover:text-background transition-colors"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
                 <button
                   onClick={() => scrollToSection("contato")}
                   className="text-background/80 hover:text-background transition-colors"
