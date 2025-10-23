@@ -16,40 +16,40 @@ const BlogHeader = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
+        isScrolled ? "bg-primary/95 backdrop-blur-md shadow-lg" : "bg-primary"
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           <a
             href="/"
             className="flex items-center hover:opacity-80 transition-opacity"
           >
-            <img src={blogLogo} alt="AUTTOPUS Blog" className="h-12" />
+            <img src={blogLogo} alt="AUTTOPUS Blog" className="h-16 md:h-20" />
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
             <a
               href="/"
-              className="text-foreground hover:text-primary transition-colors font-medium"
+              className="text-primary-foreground hover:text-primary-foreground/80 transition-colors font-medium"
             >
               Home
             </a>
             <a
               href="/#servicos"
-              className="text-foreground hover:text-primary transition-colors font-medium"
+              className="text-primary-foreground hover:text-primary-foreground/80 transition-colors font-medium"
             >
               Serviços
             </a>
             <a
               href="/blog"
-              className="text-primary font-medium"
+              className="text-primary-foreground font-bold underline underline-offset-4"
             >
               Blog
             </a>
             <a
               href="/#contato"
-              className="text-foreground hover:text-primary transition-colors font-medium"
+              className="text-primary-foreground hover:text-primary-foreground/80 transition-colors font-medium"
             >
               Contato
             </a>
@@ -57,7 +57,7 @@ const BlogHeader = () => {
 
           <Button
             onClick={() => window.location.href = "/#contato"}
-            className="bg-primary text-primary-foreground hover:opacity-90 transition-opacity font-semibold px-6"
+            className="bg-background text-primary hover:bg-background/90 transition-opacity font-semibold px-6"
           >
             Fale com um Especialista
           </Button>
