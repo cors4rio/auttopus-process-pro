@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import Header from "@/components/Header";
+import BlogHeader from "@/components/blog/BlogHeader";
 import Footer from "@/components/Footer";
 import BlogCard from "@/components/blog/BlogCard";
 import FeaturedCarousel from "@/components/blog/FeaturedCarousel";
@@ -24,7 +24,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <BlogHeader />
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}
         <div className="text-center mb-12">
