@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Bot, FileCheck, Zap, Shield, Clock, TrendingUp } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Bot, FileCheck, Zap, Shield, Clock, TrendingUp, ArrowRight, Sparkles, CheckCircle2, Target, AlertTriangle } from "lucide-react";
 
 type Sector = "contabilidade" | "advocacia" | "financeiro" | "rh";
 
 const AutomacaoProcessos = () => {
   const [selectedSector, setSelectedSector] = useState<Sector>("contabilidade");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    setIsTransitioning(true);
+    const timer = setTimeout(() => setIsTransitioning(false), 300);
+    return () => clearTimeout(timer);
+  }, [selectedSector]);
 
   const scrollToContact = () => {
     const element = document.getElementById("contato");
@@ -159,39 +167,73 @@ const AutomacaoProcessos = () => {
         
         {/* Hero Section */}
         <section className="pt-32 pb-20 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-white/5 rounded-full blur-3xl" />
+          {/* Animated Background Elements */}
+          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-white/5 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-white/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-ping" />
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-white/30 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+              <Badge className="mb-6 bg-white/20 text-white border-white/30 hover:bg-white/30 text-sm px-4 py-2 animate-fade-in">
+                <Sparkles className="w-4 h-4 mr-2" />
+                Tecnologia RPA de Última Geração
+              </Badge>
+              
+              <div className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center animate-scale-in relative group">
                 {/* Espaço para imagem do robô */}
-                <Bot className="w-12 h-12 text-white" />
+                <Bot className="w-12 h-12 text-white transition-transform group-hover:scale-110" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 to-white/0 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
                 Automação de processos (RPA)
               </h1>
-              <h2 className="text-2xl md:text-3xl mb-8 text-primary-foreground/90">
+              <h2 className="text-2xl md:text-3xl mb-8 text-primary-foreground/90 animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 Substitua horas de trabalho manual por segundos de automação inteligente.
               </h2>
-              <p className="text-xl mb-8 text-primary-foreground/80">
+              <p className="text-xl mb-8 text-primary-foreground/80 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 Nós criamos robôs e integrações que executam suas tarefas repetitivas, 24 horas por dia, para que sua equipe foque em análise e estratégia.
               </p>
               <Button
                 size="lg"
                 onClick={scrollToContact}
-                className="bg-background text-primary hover:bg-background/90 text-lg px-8 py-6 h-auto"
+                className="bg-background text-primary hover:bg-background/90 hover:scale-105 text-lg px-8 py-6 h-auto transition-all duration-300 animate-fade-in group"
+                style={{ animationDelay: '0.3s' }}
               >
                 Solicite um diagnóstico de automação
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
+              
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-8 mt-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <div className="text-center">
+                  <div className="text-4xl font-bold mb-2">80%</div>
+                  <div className="text-sm text-primary-foreground/70">Redução de tempo</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold mb-2">24/7</div>
+                  <div className="text-sm text-primary-foreground/70">Operação contínua</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold mb-2">99%</div>
+                  <div className="text-sm text-primary-foreground/70">Precisão</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Sector Selector */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center mb-12">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
+                <Target className="w-3 h-3 mr-2" />
+                Soluções Personalizadas por Setor
+              </Badge>
               <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Veja como a automação se aplica ao seu setor
               </h3>
@@ -207,9 +249,17 @@ const AutomacaoProcessos = () => {
                   size="lg"
                   variant={selectedSector === sector.id ? "default" : "outline"}
                   onClick={() => setSelectedSector(sector.id as Sector)}
-                  className="text-lg px-8 py-6 h-auto transition-all duration-300"
+                  className={`text-lg px-8 py-6 h-auto transition-all duration-300 relative group ${
+                    selectedSector === sector.id ? 'shadow-lg shadow-primary/20' : 'hover:scale-105'
+                  }`}
                 >
+                  {selectedSector === sector.id && (
+                    <CheckCircle2 className="w-5 h-5 mr-2 animate-scale-in" />
+                  )}
                   {sector.label}
+                  {selectedSector !== sector.id && (
+                    <ArrowRight className="w-5 h-5 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                  )}
                 </Button>
               ))}
             </div>
@@ -217,22 +267,40 @@ const AutomacaoProcessos = () => {
         </section>
 
         {/* Dynamic Content - Pain Point */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-muted/30 relative overflow-hidden">
+          <div className="absolute top-10 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="animate-fade-in">
+                <div className={`transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
+                  <Badge className="mb-4 bg-destructive/10 text-destructive border-destructive/20">
+                    Desafio do Setor
+                  </Badge>
                   <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                     {currentContent.painTitle}
                   </h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                     {currentContent.painText}
                   </p>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      <span>Tempo perdido</span>
+                    </div>
+                    <div className="w-1 h-1 rounded-full bg-muted-foreground/30" />
+                    <div className="flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4" />
+                      <span>Alto risco de erros</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className={`flex items-center justify-center transition-all duration-500 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
                   {/* Espaço para imagem 3D */}
-                  <div className="w-full h-80 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                    <Bot className="w-32 h-32 text-primary/40" />
+                  <div className="w-full h-80 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center relative group">
+                    <Bot className="w-32 h-32 text-primary/40 transition-transform group-hover:scale-110" />
+                    <div className="absolute inset-0 rounded-2xl border-2 border-dashed border-primary/20 group-hover:border-primary/40 transition-colors" />
                   </div>
                 </div>
               </div>
@@ -241,10 +309,16 @@ const AutomacaoProcessos = () => {
         </section>
 
         {/* Dynamic Content - Solutions */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12 animate-fade-in">
+              <div className={`text-center mb-12 transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+                  <Zap className="w-3 h-3 mr-2" />
+                  Soluções em Ação
+                </Badge>
                 <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                   {currentContent.solutionsTitle}
                 </h3>
@@ -255,26 +329,44 @@ const AutomacaoProcessos = () => {
 
               <div className="grid md:grid-cols-3 gap-8 mb-12">
                 {currentContent.examples.map((example, index) => (
-                  <Card key={index} className="border-2 border-border hover:border-primary transition-all duration-300 animate-fade-in">
-                    <CardContent className="p-8">
-                      <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                        <example.icon className="w-8 h-8 text-primary" />
+                  <Card 
+                    key={index} 
+                    className={`border-2 border-border hover:border-primary hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group ${
+                      isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+                    }`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                  >
+                    <CardContent className="p-8 relative">
+                      <div className="absolute top-4 right-4">
+                        <Badge variant="secondary" className="text-xs">
+                          {`0${index + 1}`}
+                        </Badge>
                       </div>
-                      <h4 className="text-xl font-bold text-foreground mb-4">
+                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform relative">
+                        <example.icon className="w-8 h-8 text-primary" />
+                        <div className="absolute -inset-1 bg-primary/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <h4 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                         {example.title}
                       </h4>
                       <p className="text-muted-foreground leading-relaxed">
                         {example.description}
                       </p>
+                      <div className="mt-4 flex items-center text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                        Saiba mais
+                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
 
-              <div className="flex items-center justify-center mt-12">
+              <div className={`flex items-center justify-center mt-12 transition-all duration-500 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
                 {/* Espaço para imagem 3D do robô entregando documento */}
-                <div className="w-full max-w-2xl h-80 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                  <Bot className="w-32 h-32 text-primary/40" />
+                <div className="w-full max-w-2xl h-80 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex items-center justify-center relative group overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                  <Bot className="w-32 h-32 text-primary/40 transition-transform group-hover:scale-110 relative z-10" />
+                  <div className="absolute inset-0 rounded-2xl border-2 border-dashed border-primary/20" />
                 </div>
               </div>
             </div>
@@ -282,25 +374,40 @@ const AutomacaoProcessos = () => {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-muted/30 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1/2 bg-primary/5 rounded-full blur-3xl" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
-              <h3 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
-                Mais que eficiência, inteligência
-              </h3>
+              <div className="text-center mb-12">
+                <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+                  <Sparkles className="w-3 h-3 mr-2" />
+                  Benefícios Comprovados
+                </Badge>
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  Mais que eficiência, inteligência
+                </h3>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Transforme sua operação com automação que entrega resultados reais e mensuráveis
+                </p>
+              </div>
 
               <div className="grid md:grid-cols-2 gap-8">
                 {benefits.map((benefit, index) => (
-                  <Card key={index} className="border-2 border-border hover:border-primary transition-all duration-300">
-                    <CardContent className="p-8">
+                  <Card 
+                    key={index} 
+                    className="border-2 border-border hover:border-primary hover:shadow-lg transition-all duration-300 group overflow-hidden relative"
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
+                    <CardContent className="p-8 relative z-10">
                       <div className="flex items-start gap-6">
                         <div className="flex-shrink-0">
-                          <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform">
                             <benefit.icon className="w-7 h-7 text-primary" />
                           </div>
                         </div>
                         <div className="flex-1">
-                          <h4 className="text-xl font-bold text-foreground mb-3">
+                          <h4 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                             {benefit.title}
                           </h4>
                           <p className="text-muted-foreground leading-relaxed">
@@ -312,37 +419,72 @@ const AutomacaoProcessos = () => {
                   </Card>
                 ))}
               </div>
+
+              {/* Visual Separator */}
+              <div className="mt-16 flex items-center justify-center gap-4">
+                <div className="h-px w-32 bg-gradient-to-r from-transparent to-border" />
+                <Bot className="w-8 h-8 text-primary/40" />
+                <div className="h-px w-32 bg-gradient-to-l from-transparent to-border" />
+              </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                A automação é o resultado de um processo sólido
-              </h3>
-              <p className="text-xl mb-8 text-primary-foreground/90">
-                Nós não criamos automações isoladas que quebram na primeira atualização. Elas são parte essencial do nosso "projeto de estruturação e otimização". Primeiro, diagnosticamos seus processos para encontrar os gargalos reais e otimizar seus sistemas. Depois, automatizamos o que foi validado.
-              </p>
-              <Button
-                size="lg"
-                onClick={() => {
-                  const element = document.getElementById("abordagem");
-                  if (element) {
-                    const offset = 80;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                  } else {
-                    window.location.href = "/#abordagem";
-                  }
-                }}
-                className="bg-background text-primary hover:bg-background/90 text-lg px-8 py-6 h-auto"
-              >
-                Conheça nossa metodologia de 4 fases
-              </Button>
+        <section className="py-20 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 left-0 w-1/3 h-full bg-white/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto">
+              <Card className="bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+                <CardContent className="p-12 text-center">
+                  <Badge className="mb-6 bg-white/20 text-white border-white/30">
+                    <Shield className="w-3 h-3 mr-2" />
+                    Metodologia Comprovada
+                  </Badge>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                    A automação é o resultado de um processo sólido
+                  </h3>
+                  <p className="text-xl mb-8 text-white/90 leading-relaxed">
+                    Nós não criamos automações isoladas que quebram na primeira atualização. Elas são parte essencial do nosso "projeto de estruturação e otimização". Primeiro, diagnosticamos seus processos para encontrar os gargalos reais e otimizar seus sistemas. Depois, automatizamos o que foi validado.
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-4 justify-center mb-8">
+                    <div className="flex items-center gap-2 text-white/90">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span>Diagnóstico completo</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-white/90">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span>Implementação gradual</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-white/90">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span>Suporte contínuo</span>
+                    </div>
+                  </div>
+                  
+                  <Button
+                    size="lg"
+                    onClick={() => {
+                      const element = document.getElementById("abordagem");
+                      if (element) {
+                        const offset = 80;
+                        const elementPosition = element.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                      } else {
+                        window.location.href = "/#abordagem";
+                      }
+                    }}
+                    className="bg-background text-primary hover:bg-background/90 hover:scale-105 text-lg px-8 py-6 h-auto transition-all duration-300 group"
+                  >
+                    Conheça nossa metodologia de 4 fases
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
