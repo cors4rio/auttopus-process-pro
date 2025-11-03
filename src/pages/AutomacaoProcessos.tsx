@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
 import { useState, useEffect } from 'react';
-import { Bot, Building2, Scale, Briefcase, Users, CheckCircle2, ArrowRight, Zap, Shield, Clock, Cog, ImageIcon, AlertTriangle, Search, FileText, Settings, Star } from 'lucide-react';
+import { Bot, Building2, Scale, Briefcase, Users, CheckCircle2, ArrowRight, Zap, Shield, Clock, Cog, ImageIcon, AlertTriangle, Search, FileText, Settings, Star, Package, MousePointer, FileCheck } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -26,6 +27,7 @@ const AutomacaoProcessos = () => {
       id: 'contabilidade' as SectorId, 
       name: 'Contabilidade', 
       icon: Building2,
+      lottieUrl: "https://lottie.host/d562f949-6525-4b3d-8e3d-9ed12d9880f3/utjdqDs041.lottie",
       content: {
         painTitle: "O custo oculto da operação contábil",
         painDescription: "Importar XMLs, apurar impostos, consultar débitos, emitir alvarás. Um escritório de contabilidade é movido a processos e prazos. A execução manual dessas tarefas não só consome um tempo valioso da sua equipe, mas também é a principal fonte de erros de digitação e falhas de conformidade que podem custar caro.",
@@ -51,6 +53,7 @@ const AutomacaoProcessos = () => {
       id: 'advocacia' as SectorId, 
       name: 'Advocacia', 
       icon: Scale,
+      lottieUrl: "https://lottie.host/28161b84-ac5c-407e-869e-0bbc38536526/u6tQXgNQKc.lottie",
       content: {
         painTitle: "O custo oculto da operação jurídica",
         painDescription: "Quantas horas seus advogados perdem por dia 'copiando e colando' andamentos de processos ou checando portais? Cada minuto gasto em tarefas administrativas é um minuto a menos de análise estratégica, aumentando o risco de perda de prazos e sobrecarregando a equipe.",
@@ -76,6 +79,7 @@ const AutomacaoProcessos = () => {
       id: 'financeiro' as SectorId, 
       name: 'Financeiro', 
       icon: Briefcase,
+      lottieUrl: "https://lottie.host/75e9ff86-4b0f-420f-81bd-c0242be1f410/R7StxjvXoD.lottie",
       content: {
         painTitle: "O gargalo do fechamento financeiro",
         painDescription: "Sua conciliação bancária ainda é uma maratona de planilhas Excel no fechamento do mês? A consolidação de dados de múltiplas fontes consome dias do seu time, aumentando o risco de erros e atrasando decisões estratégicas.",
@@ -101,6 +105,7 @@ const AutomacaoProcessos = () => {
       id: 'rh' as SectorId, 
       name: 'RH / Administrativo', 
       icon: Users,
+      lottieUrl: "https://lottie.host/b94e8db4-a4ac-46dd-af05-3178461973f7/RUZre6xf05.lottie",
       content: {
         painTitle: "O custo oculto da operação de RH",
         painDescription: "Admissões, folha de pagamento, controle de ponto, gestão de benefícios. O RH é sobrecarregado com tarefas burocráticas que consomem tempo que deveria ser dedicado ao desenvolvimento de pessoas e cultura organizacional.",
@@ -178,40 +183,46 @@ const AutomacaoProcessos = () => {
             </div>
 
             {/* Gatilhos de Prova Rápida */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in delay-500">
-              <Card className="bg-white/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:scale-105 group">
-                <CardContent className="p-6 space-y-3">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto group-hover:bg-primary/20 transition-colors">
-                    <Shield className="w-6 h-6 text-primary" />
+            <div className="hidden md:flex gap-6 mt-12 animate-fade-in delay-500 max-w-5xl mx-auto">
+              <Card className="flex-1 bg-white/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl group">
+                <CardContent className="p-6 flex items-start gap-4">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <Search className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Reduza Erros Críticos</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Eliminamos falhas de digitação em conciliações, apuração de tributos e SPEDs.
-                  </p>
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-lg">Seu diagnóstico</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Não cobramos para diagnosticar oportunidades de automação dentro da sua operação.
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:scale-105 group">
-                <CardContent className="p-6 space-y-3">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto group-hover:bg-primary/20 transition-colors">
-                    <Clock className="w-6 h-6 text-primary" />
+              <Card className="flex-1 bg-white/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl group">
+                <CardContent className="p-6 flex items-start gap-4">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <MousePointer className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Economize Horas de Especialistas</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Liberamos sua equipe de consultar portais (TJs, Receita) manualmente.
-                  </p>
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-lg">1 click e tenha todas as TFFs</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Deixe de emitir documentações recorrentes de forma manual
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:scale-105 group">
-                <CardContent className="p-6 space-y-3">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto group-hover:bg-primary/20 transition-colors">
-                    <Zap className="w-6 h-6 text-primary" />
+              <Card className="flex-1 bg-white/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl group">
+                <CardContent className="p-6 flex items-start gap-4">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <Package className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg">Use 100% do seu Software</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Fazemos seus sistemas (Domínio, Legal One, ERPs) realmente trabalharem para você.
-                  </p>
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-lg">Pacote de automações</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Fornecemos pacotes de automações, melhore sua operação com previsibilidade de investimento.
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -357,13 +368,13 @@ const AutomacaoProcessos = () => {
                   
                   <div className="relative group">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300" />
-                    <div className="relative aspect-video bg-gradient-to-br from-muted to-background rounded-lg border-2 border-dashed border-primary/30 flex items-center justify-center hover:border-primary/50 transition-all duration-300">
-                      <div className="text-center space-y-2">
-                        <ImageIcon className="w-16 h-16 text-muted-foreground mx-auto opacity-50" />
-                        <p className="text-sm text-muted-foreground">
-                          [Espaço para imagem/animação do setor]
-                        </p>
-                      </div>
+                    <div className="relative aspect-video bg-gradient-to-br from-muted to-background rounded-lg border-2 border-dashed border-primary/30 flex items-center justify-center hover:border-primary/50 transition-all duration-300 overflow-hidden">
+                      <DotLottieReact
+                        src={sectors.find(s => s.id === selectedSector)?.lottieUrl}
+                        loop
+                        autoplay
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   </div>
                 </div>
@@ -424,13 +435,13 @@ const AutomacaoProcessos = () => {
                 {/* Image placeholder for solutions */}
                 <div className="mt-12 relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-lg blur-2xl group-hover:blur-3xl transition-all duration-500" />
-                  <div className="relative aspect-[21/9] bg-gradient-to-br from-background via-muted to-background rounded-lg border-2 border-dashed border-primary/30 flex items-center justify-center hover:border-primary/50 transition-all duration-300 group-hover:scale-[1.02]">
-                    <div className="text-center space-y-3">
-                      <ImageIcon className="w-20 h-20 text-muted-foreground mx-auto opacity-50" />
-                      <p className="text-muted-foreground">
-                        [Espaço para visualização de automação/workflow]
-                      </p>
-                    </div>
+                  <div className="relative aspect-[21/9] bg-gradient-to-br from-background via-muted to-background rounded-lg border-2 border-dashed border-primary/30 flex items-center justify-center hover:border-primary/50 transition-all duration-300 group-hover:scale-[1.02] overflow-hidden">
+                    <DotLottieReact
+                      src={sectors.find(s => s.id === selectedSector)?.lottieUrl}
+                      loop
+                      autoplay
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                 </div>
               </div>
