@@ -165,13 +165,13 @@ const AutomacaoProcessos = () => {
             </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">
-              Automação de Processos: O Fim do Trabalho Manual
+              Automação de processos, cuidamos de cada passo da sua rotina operacional com automações assertivas.
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 animate-fade-in delay-200 leading-relaxed">
-              Seus especialistas (contábeis, jurídicos, financeiros) estão presos em tarefas repetitivas? 
-              Nós diagnosticamos seus processos de negócio e usamos a tecnologia (RPA e otimização) para 
-              curar a causa da sua dor de cabeça operacional.
+              Somos especialistas no desenvolvimento de automações, buscamos desenvolver com base em cada necessidade. 
+              São mais de 200 empresas que já confiam no desenvolvimento da Auttopus.
+              Conheça nosso cada passo do nosso processo e transforme sua operação.
             </p>
 
             {/* Icon with Animation */}
@@ -189,8 +189,8 @@ const AutomacaoProcessos = () => {
                   <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Search className="w-7 h-7 text-primary" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-lg">Seu diagnóstico</h3>
+                  <div className="space-y-2 text-left">
+                    <h3 className="font-semibold text-lg">Seu diagnóstico</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Não cobramos para diagnosticar oportunidades de automação dentro da sua operação.
                     </p>
@@ -203,8 +203,8 @@ const AutomacaoProcessos = () => {
                   <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <MousePointer className="w-7 h-7 text-primary" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-lg">1 click e tenha todas as TFFs</h3>
+                  <div className="space-y-2 text-left">
+                    <h3 className="font-semibold text-lg">1 click e tenha todas as TFFs</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Deixe de emitir documentações recorrentes de forma manual
                     </p>
@@ -217,8 +217,8 @@ const AutomacaoProcessos = () => {
                   <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-primary/10 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Package className="w-7 h-7 text-primary" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-lg">Pacote de automações</h3>
+                  <div className="space-y-2 text-left">
+                    <h3 className="font-semibold text-lg">Pacote de automações</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Fornecemos pacotes de automações, melhore sua operação com previsibilidade de investimento.
                     </p>
@@ -316,6 +316,25 @@ const AutomacaoProcessos = () => {
             </h2>
             <p className="text-xl text-muted-foreground">
               Nossos projetos são desenhados para os desafios específicos da sua área de atuação.
+            </p>
+          </div>
+
+          {/* Economy Block */}
+          <div className="max-w-4xl mx-auto mb-16 bg-primary text-primary-foreground rounded-2xl p-12 text-center shadow-2xl">
+            <p className="text-lg mb-2 opacity-90">Uma economia de até</p>
+            <h2 className="text-6xl md:text-7xl font-bold mb-2">
+              25.000<span className="text-3xl align-super">*</span>
+            </h2>
+            <p className="text-2xl md:text-3xl font-semibold mb-6 opacity-95">
+              1 ano de produtividade
+            </p>
+            <p className="text-base mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed">
+              Com a Consultoria AUTTOPUS, estruturamos seus processos para que o tempo de adaptação de novos talentos 
+              seja investido em crescimento, não em caos.
+            </p>
+            <p className="text-sm opacity-75 leading-relaxed">
+              *Baseado em nossa análise: 1 ano de produtividade é perdido a cada 5 novas contratações, que levam em média 
+              3 meses para se habituar em empresas sem processos estruturados.
             </p>
           </div>
 
