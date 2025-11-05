@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { useState, useEffect } from 'react';
-import { Bot, Building2, Scale, Briefcase, Users, CheckCircle2, ArrowRight, Zap, Shield, Clock, Cog, ImageIcon, AlertTriangle, Search, FileText, Settings, Star, Package, MousePointer, FileCheck } from 'lucide-react';
+import { Bot, Building2, Scale, Briefcase, Users, CheckCircle2, ArrowRight, Zap, Shield, Clock, Cog, ImageIcon, AlertTriangle, Search, FileText, Settings, Star, Package, MousePointer, FileCheck, ChevronDown, ChevronRight, ExternalLink } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,18 +9,154 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 type SectorId = 'contabilidade' | 'advocacia' | 'financeiro' | 'rh';
+type SubSectorId = 'legalizacao' | 'contabil' | 'tributario' | 'pessoal' | 'rh';
 
 const AutomacaoProcessos = () => {
   const [selectedSector, setSelectedSector] = useState<SectorId>('contabilidade');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [expandedSubSector, setExpandedSubSector] = useState<SubSectorId | null>('legalizacao');
+  const [selectedMunicipio, setSelectedMunicipio] = useState<string | null>(null);
 
   const handleSectorChange = (sectorId: SectorId) => {
     setIsTransitioning(true);
     setTimeout(() => {
       setSelectedSector(sectorId);
+      setExpandedSubSector(null);
       setTimeout(() => setIsTransitioning(false), 50);
     }, 300);
   };
+
+  const toggleSubSector = (subSectorId: SubSectorId) => {
+    setExpandedSubSector(expandedSubSector === subSectorId ? null : subSectorId);
+  };
+
+  // Automações de Legalização por município
+  const legalizacaoAutomacoes = {
+    salvador: [
+      {
+        title: "TFF - Taxa de Fiscalização do Funcionamento",
+        periodicidade: "Anual",
+        description: "Emissão automática da Taxa de Fiscalização de Funcionamento através do Portal SEFAZ Salvador. Reduz o tempo de emissão em até 95%.",
+        portal: "Portal SEFAZ Salvador – TFF/TLL e 2ª via DAM",
+        hasSaibaMais: true
+      },
+      {
+        title: "Alvará de Funcionamento",
+        periodicidade: "Anual",
+        description: "Emissão e renovação automática do Alvará de Funcionamento. Processo que leva meses manualmente pode ser concluído em um único dia.",
+        portal: "Portal SEFAZ Salvador – Emissão de Alvará",
+        hasSaibaMais: true
+      },
+      {
+        title: "Parcelamentos Municipais",
+        periodicidade: "Mensal (se houver parcelamento ativo)",
+        description: "Emissão e envio automático de guias de parcelamentos de débitos TFF/ISS e outras obrigações municipais.",
+        portal: "Portal SEFAZ Salvador / DAM de parcelamento",
+        hasSaibaMais: false
+      },
+      {
+        title: "Licença/Alvará Sanitário",
+        periodicidade: "Anual (quando exigido)",
+        description: "Renovação automática de licenças sanitárias para estabelecimentos que necessitam dessa obrigação.",
+        portal: "Portal da SMS/SESAB – renovação/licenciamento sanitário",
+        hasSaibaMais: false
+      }
+    ],
+    saoPaulo: [
+      {
+        title: "TFE - Taxa de Fiscalização de Estabelecimentos",
+        periodicidade: "Anual (até 5 parcelas)",
+        description: "Emissão automática da TFE através do Portal da Secretaria da Fazenda. Gestão de parcelamento em até 5x.",
+        portal: "DUC/DAMSP – Portal da Secretaria da Fazenda (TFE)",
+        hasSaibaMais: false
+      },
+      {
+        title: "Alvará e Licenças Setoriais",
+        periodicidade: "Anual",
+        description: "Emissão e renovação automática de alvarás e licenças específicas por setor de atuação.",
+        portal: "Portal da Secretaria da Fazenda/serviços municipais correlatos",
+        hasSaibaMais: true
+      },
+      {
+        title: "Parcelamentos Municipais",
+        periodicidade: "Mensal (se houver parcelamento ativo)",
+        description: "Automação da emissão e envio de guias de parcelamentos TFE/ISS e outras obrigações.",
+        portal: "DUC/PAT/Portal de Parcelamentos",
+        hasSaibaMais: false
+      }
+    ],
+    recife: [
+      {
+        title: "Taxa de Licença de Localização",
+        periodicidade: "Prévia à instalação (fato gerador único)",
+        description: "Emissão automática da taxa de licença de localização para novos estabelecimentos.",
+        portal: "Portal Recife em Dia / Licenciamento Unificado",
+        hasSaibaMais: false
+      },
+      {
+        title: "Taxa de Licença de Funcionamento",
+        periodicidade: "Semestral",
+        description: "Renovação automática semestral da licença de funcionamento através do portal unificado.",
+        portal: "Portal Recife em Dia / Licenciamento Unificado",
+        hasSaibaMais: false
+      },
+      {
+        title: "Parcelamentos Municipais",
+        periodicidade: "Mensal (se houver parcelamento ativo)",
+        description: "Gestão automatizada de parcelamentos de taxas e licenças municipais.",
+        portal: "Portal Recife em Dia / SELIC-SEDUL",
+        hasSaibaMais: false
+      }
+    ],
+    vitoria: [
+      {
+        title: "Alvará de Localização e Funcionamento",
+        periodicidade: "Anual",
+        description: "Emissão automática através do sistema 'Alvará Mais Fácil' da Prefeitura de Vitória.",
+        portal: "Portal Alvará Mais Fácil – Prefeitura de Vitória",
+        hasSaibaMais: true
+      },
+      {
+        title: "Taxa do Alvará",
+        periodicidade: "Anual",
+        description: "Cálculo e emissão automática da taxa conforme porte e área do estabelecimento.",
+        portal: "Portal Alvará Mais Fácil – emissão e pagamento",
+        hasSaibaMais: false
+      },
+      {
+        title: "Parcelamentos Municipais",
+        periodicidade: "Mensal (se houver parcelamento ativo)",
+        description: "Automação de débitos locais e gestão de parcelamentos municipais.",
+        portal: "Portal do Empreendedor/SEDEC – Vitória",
+        hasSaibaMais: false
+      }
+    ],
+    federal: [
+      {
+        title: "Parcelamentos Federais (PGFN/Regularize)",
+        periodicidade: "Mensal (se houver parcelamento ativo)",
+        description: "Emissão e envio automático de guias de parcelamentos federais vinculados ao CNPJ.",
+        portal: "Portal Regularize/PGFN ou e-CAC (vínculo do CNPJ)",
+        hasSaibaMais: false
+      }
+    ]
+  };
+
+  const subSetores = [
+    { id: 'legalizacao' as SubSectorId, name: 'Legalização', icon: FileCheck },
+    { id: 'contabil' as SubSectorId, name: 'Contábil', icon: FileText },
+    { id: 'tributario' as SubSectorId, name: 'Tributário', icon: Settings },
+    { id: 'pessoal' as SubSectorId, name: 'Pessoal/Folha', icon: Users },
+    { id: 'rh' as SubSectorId, name: 'RH', icon: Users }
+  ];
+
+  const municipios = [
+    { id: 'salvador', name: 'Salvador (BA)', key: 'salvador' },
+    { id: 'saoPaulo', name: 'São Paulo (SP)', key: 'saoPaulo' },
+    { id: 'recife', name: 'Recife (PE)', key: 'recife' },
+    { id: 'vitoria', name: 'Vitória (ES)', key: 'vitoria' },
+    { id: 'federal', name: 'Federal', key: 'federal' }
+  ];
 
   const sectors = [
     { 
@@ -463,6 +599,195 @@ const AutomacaoProcessos = () => {
                     />
                   </div>
                 </div>
+
+                {/* Detailed Automations Section - Only for Contabilidade */}
+                {selectedSector === 'contabilidade' && (
+                  <div className="mt-16 space-y-8" style={{ fontFamily: "'Lato', sans-serif" }}>
+                    <div className="text-center mb-12">
+                      <Badge variant="outline" className="mb-4">
+                        Automações Detalhadas por Área
+                      </Badge>
+                      <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                        Explore as automações específicas para cada departamento
+                      </h3>
+                      <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                        Selecione uma área para ver todas as automações disponíveis
+                      </p>
+                    </div>
+
+                    {/* Sub-Sector Navigation */}
+                    <div className="flex flex-wrap justify-center gap-3 mb-8">
+                      {subSetores.map((subSetor) => {
+                        const Icon = subSetor.icon;
+                        return (
+                          <Button
+                            key={subSetor.id}
+                            variant={expandedSubSector === subSetor.id ? "default" : "outline"}
+                            onClick={() => toggleSubSector(subSetor.id)}
+                            className="group"
+                          >
+                            <Icon className="w-4 h-4 mr-2" />
+                            {subSetor.name}
+                            {expandedSubSector === subSetor.id ? (
+                              <ChevronDown className="w-4 h-4 ml-2" />
+                            ) : (
+                              <ChevronRight className="w-4 h-4 ml-2" />
+                            )}
+                          </Button>
+                        );
+                      })}
+                    </div>
+
+                    {/* Legalização Content */}
+                    {expandedSubSector === 'legalizacao' && (
+                      <Card className="border-2 border-primary/20">
+                        <CardContent className="p-8 space-y-8">
+                          <div className="text-center">
+                            <h4 className="text-2xl font-bold mb-3">Automações de Legalização</h4>
+                            <p className="text-muted-foreground mb-6">
+                              Todas essas tarefas podem ser automatizadas na emissão e no envio. 
+                              Processos que levam um mês ou mais manualmente podem ser concluídos em um único dia.
+                            </p>
+                          </div>
+
+                          {/* Municipality Filters */}
+                          <div className="flex flex-wrap justify-center gap-2 mb-8">
+                            <Button
+                              variant={selectedMunicipio === null ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => setSelectedMunicipio(null)}
+                            >
+                              Todos os Municípios
+                            </Button>
+                            {municipios.map((municipio) => (
+                              <Button
+                                key={municipio.id}
+                                variant={selectedMunicipio === municipio.key ? "default" : "outline"}
+                                size="sm"
+                                onClick={() => setSelectedMunicipio(municipio.key)}
+                              >
+                                {municipio.name}
+                              </Button>
+                            ))}
+                          </div>
+
+                          {/* Automation Cards in Grid/Carousel */}
+                          <div className="space-y-12">
+                            {municipios
+                              .filter(m => !selectedMunicipio || m.key === selectedMunicipio)
+                              .map((municipio) => {
+                                const automacoes = legalizacaoAutomacoes[municipio.key as keyof typeof legalizacaoAutomacoes];
+                                
+                                return (
+                                  <div key={municipio.id} className="space-y-4">
+                                    <h5 className="text-xl font-semibold flex items-center gap-2">
+                                      <Badge variant="secondary">{municipio.name}</Badge>
+                                    </h5>
+                                    
+                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                      {automacoes.map((automacao, index) => (
+                                        <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
+                                          <CardContent className="p-6 space-y-4">
+                                            <div className="flex items-start justify-between">
+                                              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
+                                                <FileCheck className="w-5 h-5 text-primary" />
+                                              </div>
+                                              <Badge variant="outline" className="text-xs">
+                                                {automacao.periodicidade}
+                                              </Badge>
+                                            </div>
+
+                                            <div>
+                                              <h6 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors">
+                                                {automacao.title}
+                                              </h6>
+                                              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                                                {automacao.description}
+                                              </p>
+                                              <p className="text-xs text-muted-foreground/70 italic">
+                                                Portal: {automacao.portal}
+                                              </p>
+                                            </div>
+
+                                            {automacao.hasSaibaMais && (
+                                              <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className="w-full group-hover:bg-primary/10 transition-colors"
+                                                onClick={() => {
+                                                  // Futuramente vai para página específica
+                                                  console.log('Navegar para:', automacao.title);
+                                                }}
+                                              >
+                                                Saiba mais
+                                                <ExternalLink className="w-3 h-3 ml-2" />
+                                              </Button>
+                                            )}
+                                          </CardContent>
+                                        </Card>
+                                      ))}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                          </div>
+
+                          <div className="mt-8 p-6 bg-muted/50 rounded-lg">
+                            <p className="text-sm text-muted-foreground text-center">
+                              <strong>Importante:</strong> A maioria dessas tarefas, como TFF e Alvará, podem ter toda sua emissão 
+                              concluída em um único dia com automação. Processos que manualmente levam semanas ou meses.
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* Placeholder for other sub-sectors */}
+                    {expandedSubSector === 'contabil' && (
+                      <Card className="border-2 border-primary/20">
+                        <CardContent className="p-8 text-center">
+                          <h4 className="text-2xl font-bold mb-3">Automações Contábeis</h4>
+                          <p className="text-muted-foreground">
+                            Conteúdo em desenvolvimento. Em breve você terá acesso a todas as automações contábeis disponíveis.
+                          </p>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {expandedSubSector === 'tributario' && (
+                      <Card className="border-2 border-primary/20">
+                        <CardContent className="p-8 text-center">
+                          <h4 className="text-2xl font-bold mb-3">Automações Tributárias</h4>
+                          <p className="text-muted-foreground">
+                            Conteúdo em desenvolvimento. Em breve você terá acesso a todas as automações tributárias disponíveis.
+                          </p>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {expandedSubSector === 'pessoal' && (
+                      <Card className="border-2 border-primary/20">
+                        <CardContent className="p-8 text-center">
+                          <h4 className="text-2xl font-bold mb-3">Automações de Pessoal/Folha</h4>
+                          <p className="text-muted-foreground">
+                            Conteúdo em desenvolvimento. Em breve você terá acesso a todas as automações de folha de pagamento disponíveis.
+                          </p>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {expandedSubSector === 'rh' && (
+                      <Card className="border-2 border-primary/20">
+                        <CardContent className="p-8 text-center">
+                          <h4 className="text-2xl font-bold mb-3">Automações de RH</h4>
+                          <p className="text-muted-foreground">
+                            Conteúdo em desenvolvimento. Em breve você terá acesso a todas as automações de recursos humanos disponíveis.
+                          </p>
+                        </CardContent>
+                      </Card>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
