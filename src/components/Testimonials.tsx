@@ -89,7 +89,7 @@ const Testimonials = () => {
                     <User className="w-10 h-10 text-primary-foreground" />
                   </div>
                   <p className="text-muted-foreground italic mb-6 leading-relaxed">
-                    "{testimonial.text}"
+                    &quot;{testimonial.text}&quot;
                   </p>
                   <div className="mt-auto">
                     <p className="font-bold text-foreground text-lg">{testimonial.name}</p>
@@ -111,7 +111,7 @@ const Testimonials = () => {
                   <User className="w-10 h-10 text-primary-foreground" />
                 </div>
                 <p className="text-muted-foreground italic mb-6 leading-relaxed">
-                  "{testimonials[activeIndex].text}"
+                  &quot;{testimonials[activeIndex].text}&quot;
                 </p>
                 <div className="mt-auto">
                   <p className="font-bold text-foreground text-lg">{testimonials[activeIndex].name}</p>

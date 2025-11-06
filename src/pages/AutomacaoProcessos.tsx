@@ -805,7 +805,7 @@ const AutomacaoProcessos = () => {
               Transforme seu "Custo Oculto" em Investimento
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              A falta de processo custa caro: 3 meses para treinar um funcionário, "gasto sobre gasto" 
+              A falta de processo custa caro: 3 meses para treinar um funcionário, gasto sobre gasto 
               em software subutilizado, horas de especialistas em tarefas manuais. O custo de não fazer 
               nada é pago todo dia.
             </p>
@@ -976,9 +976,9 @@ const AutomacaoProcessos = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground leading-relaxed italic">
-                  "Achávamos que o problema era o sistema Domínio. A AUTTOPUS mostrou que o problema era nosso 
+                  &quot;Achávamos que o problema era o sistema Domínio. A AUTTOPUS mostrou que o problema era nosso 
                   fluxo de fechamento fiscal. Hoje, nossos SPEDs são validados e transmitidos automaticamente, 
-                  e ganhamos 3 dias de trabalho da equipe sênior todo mês."
+                  e ganhamos 3 dias de trabalho da equipe sênior todo mês.&quot;
                 </p>
                 <div className="flex gap-1 mt-6">
                   {[1,2,3,4,5].map(i => (
@@ -1001,9 +1001,9 @@ const AutomacaoProcessos = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground leading-relaxed italic">
-                  "A AUTTOPUS criou um robô que monitora 1.500 processos nossos no PJE e E-SAJ. 
+                  &quot;A AUTTOPUS criou um robô que monitora 1.500 processos nossos no PJE e E-SAJ. 
                   Paramos de perder prazos por falha na leitura de intimação e ganhamos 20 horas 
-                  de trabalho de advogado por semana."
+                  de trabalho de advogado por semana.&quot;
                 </p>
                 <div className="flex gap-1 mt-6">
                   {[1,2,3,4,5].map(i => (
