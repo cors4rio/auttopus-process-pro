@@ -812,60 +812,138 @@ const AutomacaoProcessos = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="relative overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:scale-105">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -translate-y-32 translate-x-32 group-hover:scale-150 transition-transform duration-700" />
-              <CardContent className="p-8 relative z-10">
-                <Badge className="mb-4">Projeto Completo</Badge>
-                <h3 className="text-2xl font-bold mb-4">Projeto de Estruturação e Otimização</h3>
-                <p className="text-muted-foreground mb-6">
-                  Nosso projeto de 4 fases (Diagnóstico, Plano, Execução, Validação) com escopo e preço definidos.
+            {/* Left Card - Destaque */}
+            <Card className="relative overflow-hidden border-4 border-accent shadow-2xl scale-105 md:scale-110">
+              {/* Badge de Destaque */}
+              <div className="absolute -right-12 top-6 rotate-45 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground px-12 py-2 shadow-lg z-20">
+                <span className="text-sm font-bold">MAIS ESCOLHIDO</span>
+              </div>
+              
+              {/* Efeito visual de fundo */}
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-accent/5 via-primary/5 to-transparent" />
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" />
+              
+              <CardContent className="p-10 relative z-10">
+                <div className="flex items-center justify-between mb-4">
+                  <Badge className="bg-accent text-accent-foreground px-4 py-1.5 text-sm">
+                    Projeto Completo
+                  </Badge>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-xs text-muted-foreground line-through">R$ 15.000</span>
+                  </div>
+                </div>
+                
+                <h3 className="text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Estruturação Total
+                </h3>
+                <p className="text-sm text-accent font-semibold mb-4">
+                  Investimento sob medida • ROI garantido em 6 meses
                 </p>
-                <ul className="space-y-3">
+                
+                <div className="mb-6 p-4 bg-accent/5 border border-accent/20 rounded-lg">
+                  <p className="text-xs text-muted-foreground mb-1">Valor médio baseado em 200+ projetos</p>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-bold text-foreground">R$ 12.500</span>
+                    <span className="text-sm text-muted-foreground">entrada</span>
+                  </div>
+                  <p className="text-xs text-primary font-medium mt-1">+ parcelas flexíveis conforme escopo</p>
+                </div>
+
+                <ul className="space-y-3 mb-8">
                   {[
-                    "Diagnóstico completo dos seus processos",
-                    "Relatório técnico detalhado",
-                    "Implementação de automações RPA",
-                    "Validação e entrega documentada"
+                    { text: "Diagnóstico profundo + relatório técnico", highlight: true },
+                    { text: "Implementação de automações RPA", highlight: true },
+                    { text: "4 fases estruturadas (30-60 dias)", highlight: false },
+                    { text: "Validação e documentação completa", highlight: false },
+                    { text: "Treinamento da equipe incluído", highlight: true },
+                    { text: "Suporte por 30 dias pós-entrega", highlight: false }
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">{item}</span>
+                      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${item.highlight ? 'text-accent' : 'text-primary'}`} />
+                      <span className={`text-sm ${item.highlight ? 'font-semibold text-foreground' : 'text-muted-foreground'}`}>
+                        {item.text}
+                      </span>
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full mt-6 group/btn" size="lg" onClick={scrollToContact}>
-                  Solicitar Proposta
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+
+                <div className="space-y-3">
+                  <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-all" size="lg" onClick={scrollToContact}>
+                    Quero Transformar Minha Operação
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                  <p className="text-xs text-center text-muted-foreground">
+                    🔥 Últimas 3 vagas do mês com desconto especial
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="relative overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:scale-105">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full -translate-y-32 translate-x-32 group-hover:scale-150 transition-transform duration-700" />
-              <CardContent className="p-8 relative z-10">
-                <Badge variant="secondary" className="mb-4">Melhoria Contínua</Badge>
-                <h3 className="text-2xl font-bold mb-4">Planos de Acompanhamento</h3>
-                <p className="text-muted-foreground mb-6">
-                  Após a estruturação, garantimos a melhoria contínua dos seus processos com suporte especializado.
+            {/* Right Card - Alternativa */}
+            <Card className="relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-border">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full -translate-y-32 translate-x-32 group-hover:scale-150 transition-transform duration-700" />
+              
+              <CardContent className="p-10 relative z-10">
+                <Badge variant="secondary" className="mb-4 px-4 py-1.5">
+                  Melhoria Contínua
+                </Badge>
+                
+                <h3 className="text-2xl font-bold mb-2">Planos de Acompanhamento</h3>
+                <p className="text-muted-foreground mb-6 text-sm">
+                  Após a estruturação, garantimos evolução constante com suporte especializado
                 </p>
-                <div className="space-y-4">
+
+                <div className="space-y-3 mb-6">
                   {[
-                    { name: "Essencial", desc: "Monitoramento e ajustes básicos" },
-                    { name: "Avançado", desc: "Otimizações mensais + suporte prioritário" },
-                    { name: "Estratégico", desc: "Consultoria contínua + novas automações" }
+                    { 
+                      name: "Essencial", 
+                      price: "R$ 1.500/mês",
+                      desc: "Monitoramento e ajustes básicos",
+                      features: ["2h mensais de suporte", "Ajustes em automações"]
+                    },
+                    { 
+                      name: "Avançado", 
+                      price: "R$ 2.800/mês",
+                      desc: "Otimizações + suporte prioritário",
+                      features: ["6h mensais dedicadas", "Novas automações mensais", "Suporte prioritário"]
+                    },
+                    { 
+                      name: "Estratégico", 
+                      price: "Sob consulta",
+                      desc: "Tech Leader dedicado",
+                      features: ["Tech Leader as a Service", "Consultoria contínua", "Acesso ilimitado"]
+                    }
                   ].map((plan, index) => (
-                    <div key={index} className="p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
-                      <div className="flex items-center justify-between">
-                        <span className="font-semibold">{plan.name}</span>
-                        <Badge variant="outline">Recorrente</Badge>
+                    <div key={index} className="p-5 rounded-xl border-2 border-border hover:border-primary bg-background hover:shadow-md transition-all group/plan cursor-pointer">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <span className="font-bold text-lg text-foreground">{plan.name}</span>
+                          <p className="text-xs text-muted-foreground mt-1">{plan.desc}</p>
+                        </div>
+                        <Badge variant="outline" className="group-hover/plan:bg-primary group-hover/plan:text-primary-foreground transition-colors">
+                          {plan.price}
+                        </Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground mt-2">{plan.desc}</p>
+                      <ul className="space-y-1 mt-3">
+                        {plan.features.map((feature, idx) => (
+                          <li key={idx} className="text-xs text-muted-foreground flex items-center gap-2">
+                            <CheckCircle2 className="w-3 h-3 text-primary" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ))}
                 </div>
-                <Button variant="outline" className="w-full mt-6" size="lg" onClick={scrollToContact}>
-                  Ver Detalhes dos Planos
+
+                <Button variant="outline" className="w-full border-2 hover:bg-primary hover:text-primary-foreground transition-all" size="lg" onClick={scrollToContact}>
+                  Conhecer os Planos
+                  <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
+                
+                <p className="text-xs text-center text-muted-foreground mt-4">
+                  💡 Ideal para quem já tem processos estruturados
+                </p>
               </CardContent>
             </Card>
           </div>

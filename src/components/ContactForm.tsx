@@ -78,25 +78,37 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contato" className="py-20 bg-gradient-to-br from-foreground via-foreground to-foreground/95 text-background relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-1/4 h-1/4 bg-accent/10 rounded-full blur-3xl" />
+    <section id="contato" className="py-20 bg-gradient-to-br from-accent via-accent/95 to-primary text-accent-foreground relative overflow-hidden">
+      {/* Decorative elements - Enhanced */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent-foreground/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/5 to-transparent rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-background mb-6">
-              Sua empresa merece usar 100% da sua tecnologia.
+            <div className="inline-block mb-4 px-6 py-2 bg-accent-foreground/10 backdrop-blur-sm rounded-full border border-accent-foreground/20">
+              <span className="text-sm font-bold">⚡ Resposta em até 2 horas úteis</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
+              Transforme Hoje o Que Está Custando Amanhã
             </h2>
-            <p className="text-xl text-background/90">
-              Não deixe o potencial inexplorado. Fale com quem entende de otimização de processos e sistemas.
+            <p className="text-xl md:text-2xl text-accent-foreground/90 max-w-3xl mx-auto leading-relaxed">
+              Não deixe processos ineficientes consumirem seu lucro. Fale com especialistas que já otimizaram 200+ empresas.
             </p>
+            <div className="flex items-center justify-center gap-8 mt-8 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span>Disponível agora</span>
+              </div>
+              <div className="text-accent-foreground/70">|</div>
+              <span className="font-semibold">Diagnóstico 100% gratuito</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
-              <form onSubmit={handleSubmit} className="space-y-6 bg-background/10 backdrop-blur-sm p-8 rounded-2xl border border-background/20">
+              <form onSubmit={handleSubmit} className="space-y-6 bg-background backdrop-blur-sm p-8 rounded-2xl border-2 border-accent-foreground/20 shadow-2xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-background">
@@ -200,33 +212,46 @@ const ContactForm = () => {
                   </div>
                 </div>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-accent text-accent-foreground hover:bg-accent/90 transition-opacity font-bold text-lg"
-                >
-                  Fale com um Especialista AUTTOPUS
-                </Button>
+                <div className="space-y-3">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 transition-all font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 duration-300"
+                  >
+                    🚀 Quero Otimizar Minha Empresa Agora
+                  </Button>
+                  <p className="text-center text-sm text-accent-foreground/70">
+                    ✓ Sem compromisso  ✓ Resposta rápida  ✓ Diagnóstico gratuito
+                  </p>
+                </div>
               </form>
             </div>
 
             <div className="space-y-6">
-              <div className="bg-background/10 backdrop-blur-sm p-6 rounded-2xl border border-background/20">
-                <h3 className="text-xl font-bold text-background mb-4">Informações de Contato</h3>
+              <div className="bg-background p-6 rounded-2xl border-2 border-accent-foreground/20 shadow-xl">
+                <h3 className="text-xl font-bold text-foreground mb-4">Fale Conosco</h3>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Phone className="w-5 h-5 text-accent mt-1" />
+                  <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+                    <Phone className="w-5 h-5 text-primary mt-1" />
                     <div>
-                      <p className="text-sm text-background/80 mb-1">Telefone</p>
-                      <p className="text-background font-medium">+55 (XX) XXXXX-XXXX</p>
+                      <p className="text-xs text-muted-foreground mb-1">Telefone/WhatsApp</p>
+                      <p className="text-foreground font-semibold">+55 (XX) XXXXX-XXXX</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Mail className="w-5 h-5 text-accent mt-1" />
+                  <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+                    <Mail className="w-5 h-5 text-primary mt-1" />
                     <div>
-                      <p className="text-sm text-background/80 mb-1">E-mail</p>
-                      <p className="text-background font-medium">contato@auttopus.com.br</p>
+                      <p className="text-xs text-muted-foreground mb-1">E-mail</p>
+                      <p className="text-foreground font-semibold">contato@auttopus.com.br</p>
                     </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 pt-6 border-t border-border">
+                  <p className="text-xs text-muted-foreground text-center mb-3">Empresas que confiam em nós:</p>
+                  <div className="flex flex-col gap-2 text-center">
+                    <p className="text-sm font-bold text-primary">200+ empresas atendidas</p>
+                    <p className="text-xs text-muted-foreground">Média de 80% de ganho em produtividade</p>
                   </div>
                 </div>
               </div>
