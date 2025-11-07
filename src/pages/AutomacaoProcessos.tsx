@@ -7,6 +7,8 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useContactForm } from '@/hooks/useContactForm';
+import { ContactFormDialog } from '@/components/ContactFormDialog';
 
 type SectorId = 'contabilidade' | 'advocacia' | 'financeiro' | 'rh';
 type SubSectorId = 'legalizacao' | 'contabil' | 'tributario' | 'pessoal' | 'rh';
@@ -16,6 +18,7 @@ const AutomacaoProcessos = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [expandedSubSector, setExpandedSubSector] = useState<SubSectorId | null>('legalizacao');
   const [selectedMunicipio, setSelectedMunicipio] = useState<string | null>(null);
+  const { isOpen, openContactForm, setIsOpen } = useContactForm();
 
   const handleSectorChange = (sectorId: SectorId) => {
     setIsTransitioning(true);
@@ -265,16 +268,6 @@ const AutomacaoProcessos = () => {
     }
   ];
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contato');
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
-
   return (
     <>
       <Helmet>
@@ -363,7 +356,7 @@ const AutomacaoProcessos = () => {
               </Card>
             </div>
 
-            <Button size="lg" onClick={scrollToContact} className="mt-8 animate-fade-in delay-700 text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 group">
+            <Button size="lg" onClick={openContactForm} className="mt-8 animate-fade-in delay-700 text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 group">
               Agende um Diagnóstico de Processos
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -868,7 +861,7 @@ const AutomacaoProcessos = () => {
                 </ul>
 
                 <div className="space-y-3">
-                  <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-all" size="lg" onClick={scrollToContact}>
+                  <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-all" size="lg" onClick={openContactForm}>
                     Quero Transformar Minha Operação
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
@@ -936,7 +929,7 @@ const AutomacaoProcessos = () => {
                   ))}
                 </div>
 
-                <Button variant="outline" className="w-full border-2 hover:bg-primary hover:text-primary-foreground transition-all" size="lg" onClick={scrollToContact}>
+                <Button variant="outline" className="w-full border-2 hover:bg-primary hover:text-primary-foreground transition-all" size="lg" onClick={openContactForm}>
                   Conhecer os Planos
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -1067,7 +1060,7 @@ const AutomacaoProcessos = () => {
               </div>
 
               <div className="text-center">
-                <Button size="lg" onClick={scrollToContact} className="text-lg px-12 py-6 shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group">
+                <Button size="lg" onClick={openContactForm} className="text-lg px-12 py-6 shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group">
                   Agendar Diagnóstico Gratuito
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -1080,7 +1073,9 @@ const AutomacaoProcessos = () => {
         </div>
       </section>
 
-        <Footer />
+      <ContactFormDialog open={isOpen} onOpenChange={setIsOpen} />
+
+      <Footer />
       </div>
     </>
   );
